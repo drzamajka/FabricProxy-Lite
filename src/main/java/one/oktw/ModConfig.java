@@ -13,6 +13,7 @@ public class ModConfig {
     private boolean hackOnlineMode = true;
     private boolean hackEarlySend = false;
     private boolean hackMessageChain = false;
+    private boolean allowDirectConnections = false;
     private String disconnectMessage = "This server requires you to connect with Velocity.";
     private String secret = "";
 
@@ -48,6 +49,11 @@ public class ModConfig {
         String envHackMessageChain = System.getenv("FABRIC_PROXY_HACK_MESSAGE_CHAIN");
         if(envHackMessageChain != null) {
             config.hackMessageChain = Boolean.parseBoolean(envHackMessageChain);
+        }
+
+        String envAllowDirectConnections = System.getenv("FABRIC_PROXY_ALLOW_DIRECT_CONNECTIONS");
+        if (envAllowDirectConnections != null) {
+            config.allowDirectConnections = Boolean.parseBoolean(envAllowDirectConnections);
         }
 
         String envDisconnectMessage = System.getenv("FABRIC_PROXY_DISCONNECT_MESSAGE");
@@ -86,6 +92,10 @@ public class ModConfig {
 
     public boolean getHackMessageChain() {
         return hackMessageChain;
+    }
+
+    public boolean getAllowDirectConnections() {
+        return allowDirectConnections;
     }
 
     public String getSecret() {
